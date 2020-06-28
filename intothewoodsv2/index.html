@@ -1,0 +1,298 @@
+<!doctype html>
+<html>
+    <head>
+            
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-97489288-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-97489288-5');
+</script>
+
+
+
+            <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+
+            <script defer src="https://www.gstatic.com/firebasejs/6.1.0/firebase-app.js"></script>
+            <script src="https://cdn.jsdelivr.net/jsbarcode/3.6.0/JsBarcode.all.min.js"></script>
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+            <script defer src="https://www.gstatic.com/firebasejs/6.1.0/firebase-auth.js"></script>
+            <script defer src="https://www.gstatic.com/firebasejs/6.1.0/firebase-firestore.js"></script>
+            <script defer src="https://www.gstatic.com/firebasejs/6.1.0/firebase-storage.js"></script>
+            <script defer src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+            <script defer src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+            <link href="css-circular-prog-bar.css" rel="stylesheet">
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.57/pdfmake.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.57/pdfmake.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.57/vfs_fonts.js"></script>
+
+         
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+<script defer src="./firebase.js"></script>
+
+        <title>Cloud camera</title>
+        <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <style>
+            body{
+                font-family: 'Raleway', sans-serif;
+                background-color: lightgrey;
+                background-image: url("http://unreached.com/intothewoodsv2/DSC_0063.JPG");
+                background-size: cover;
+
+            }
+            header{
+             background-color: white;
+             position: absolute;
+             top: 0px;
+             left: 0px;
+             right: 0px;
+             padding: 15px;
+             
+             
+
+            }
+            .all_input{
+                padding:10px;
+                border-style: none;
+                background-color: white;
+            }
+            .all_input:hover{
+                background-color: darkgrey;
+            }
+            .title{
+                background-color: black;
+                padding: 50px;
+                font-size: 30px;
+                position: absolute;
+                left: 0px;
+                right:0px;
+                color: white;
+            }
+            .signs{
+                text-align: center;
+            }
+            #Email{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+                
+     
+            }
+            .input{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+            }
+            #password{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+            }
+            #sub{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+               
+        
+            }
+            #sub:hover{
+                background-color: darkgrey;
+            }
+            .passres{
+                background-color: lightgray;
+                border-style:none;
+                
+
+            }
+            .center{
+                text-align: center;
+            }
+            #emres{
+                border-right-style: none;
+                border-left-style: none;
+                border-top-style: none;
+    
+            }
+            .popsub{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+                text-align: center
+            }
+            /* button{
+                text-align: center;
+            } */
+            #suba{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+               
+        
+            }
+            #suba:hover{
+                background-color: darkgrey;
+            }
+            .pdfgen{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+
+            }
+            .pdfgen:hover{
+                background-color:darkgray;
+            }
+            .profile{
+                height: 100px;
+                position: absolute;
+                top: 350px;
+                bottom: 350px;
+
+                
+            }
+            .usr{
+                border-style:none;
+                border-radius: 10px;
+                height:350px;
+                width:290px;
+    
+                background-color:black;
+                color: white;
+                overflow: hidden;
+
+                
+
+
+
+            }
+            .ac{
+                height:50px;
+                display:block;
+                margin: auto;
+            }
+            .bed{
+                padding: 5px;
+                font-size: 20px;
+            }
+            h4{
+                font-family: 'Raleway', sans-serif;
+            }
+            .logo{
+                height: 30px;
+             
+            }
+            .usr1{
+    
+                border-style:none;
+                border-radius: 10px;
+                height:350px;
+                width:290px;
+    
+                background-color:black;
+                
+                color: white;
+                padding: 0px;
+                list-style:none;
+                overflow: hidden;
+
+
+
+             
+
+            }
+            .usr2{
+                border-style:none;
+                border-radius: 10px;
+                height:350px;
+                width:290px;
+    
+                background-color:black;
+                color: white;
+                margin-left: 10px;
+                overflow: hidden;
+
+                
+
+            }
+            #profim{
+                height: 55px;
+                border-radius: 30px;
+                border-start-end-radius: 30px;
+
+            }
+            .bt{
+                font-size: 50px;
+            }
+            .logoa{
+                height:200px;
+            }
+            .s200{
+                font-size: 100px;
+                color:white;
+                margin: 0;
+                color: #482B89;
+                background-color: white;
+                opacity: 0.6;
+                width: auto;
+                
+            }
+            .big{
+                height:80px;
+            }
+            .vs{
+                margin: 0;
+                position: absolute;
+                top: 50%;
+                -ms-transform: translateY(-50%);
+                transform: translateY(-50%);
+            }
+            .p{
+                padding: 20px;
+            }
+            #ma1{
+                vertical-align: baseline;
+            }
+            .sjp{
+                background-color: #482B89;
+            }
+            
+           
+           
+     
+           
+            
+            
+        </style>
+
+    </head>
+    
+        <nav class="navbar navbar-light sjp">
+            <p class="bt"><img src="http://unreached.com/intothewoodsv2/St Johns Logo.PNG" class="logo big"></p>
+            
+        </nav><br>
+
+    <div class="center">
+    <p class="s200"><b>St John's Student e-portal</b></p><br><br><button class="all_input" onclick="go()"><h1><b>Enter Site</b></h1></button></div>
+        <div class="p">
+        
+            </div>
+        <hr>
+
+    
+    <script>
+        document.getElementById("rfi").focus();
+        //document.getElementById("date").innerHTML="Please return by 1:50 the current time is: "+new Date()+"<b>(This time will not update it's self. You are responsible for time keeping)<b>";
+        function go(){
+            window.location.replace("login.html")
+        }
+        
+    </script>

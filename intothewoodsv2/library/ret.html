@@ -1,0 +1,391 @@
+<!doctype html>
+<html>
+    
+    <head>
+        
+            <script id="notif"></script>
+            <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+
+            <script defer src="https://code.jquery.com/jquery-3.4.1.js"></script>
+            <script defer src="https://www.gstatic.com/firebasejs/6.1.0/firebase-app.js"></script>
+            <script id="ola"></script>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+            <script defer src="https://www.gstatic.com/firebasejs/6.1.0/firebase-auth.js"></script>
+            <script defer src="https://www.gstatic.com/firebasejs/6.1.0/firebase-firestore.js"></script>
+            <script defer src="https://www.gstatic.com/firebasejs/6.1.0/firebase-storage.js"></script>
+            <script defer src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+            <script defer src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+         
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+<script defer src="/intothewoodsv2/firebase.js"></script>
+
+        <title>Cloud camera</title>
+        <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <style>
+            body{
+                font-family: 'Raleway', sans-serif;
+                background-color: lightgrey;
+
+            }
+            header{
+             background-color: white;
+             position: absolute;
+             top: 0px;
+             left: 0px;
+             right: 0px;
+             padding: 15px;
+             
+             
+
+            }
+            .title{
+                background-color: black;
+                padding: 50px;
+                font-size: 30px;
+                position: absolute;
+                left: 0px;
+                right:0px;
+                color: white;
+                overflow: scroll;
+            }
+            .signs{
+                text-align: center;
+            }
+            #Email{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+                
+     
+            }
+            #password{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+            }
+            .all_input{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+                text-decoration: none;
+
+                
+            }
+            .ti{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+            }
+            .sub{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+               
+        
+            }
+            .sub:hover{
+                background-color: darkgrey;
+            }
+            .passres{
+                background-color: lightgray;
+                border-style:none;
+                
+
+            }
+            .center{
+                text-align: center;
+            }
+            #emres{
+                border-right-style: none;
+                border-left-style: none;
+                border-top-style: none;
+    
+            }
+            .popsub{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+                text-align: center
+            }
+            button{
+                text-align: center;
+            }
+            #suba{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+               
+        
+            }
+            #suba:hover{
+                background-color: darkgrey;
+            }
+            .profile{
+                height: 100px;
+                position: absolute;
+                top: 350px;
+                bottom: 350px;
+
+                
+            }
+            .usr{
+                border-style:none;
+                border-radius: 10px;
+                height:350px;
+                width:290px;
+    
+                background-color:black;
+                color: white;
+                overflow: hidden;
+
+                
+
+
+
+            }
+            .ac{
+                height:50px;
+                display:block;
+                margin: auto;
+            }
+            .bed{
+                padding: 5px;
+                font-size: 20px;
+            }
+            h4{
+                font-family: 'Raleway', sans-serif;
+            }
+            .logo{
+                height: 30px;
+             
+            }
+            .usr1{
+    
+                border-style:none;
+                border-radius: 10px;
+                height:350px;
+                width:290px;
+    
+                background-color:black;
+                
+                color: white;
+                padding: 0px;
+                list-style:none;
+                overflow: hidden;
+
+
+
+             
+
+            }
+            .usr2{
+                border-style:none;
+                border-radius: 10px;
+                height:350px;
+                width:290px;
+    
+                background-color:black;
+                color: white;
+                margin-left: 10px;
+                overflow: hidden;
+
+                
+
+            }
+            .logos{
+                position: absolute;
+                bottom: 0px;
+                filter: grayscale(100%);
+            }
+            .fblog{
+                height: 50px;
+                position: absolute;
+                bottom: 4px;
+                left: 15%;
+            }
+            .options{
+                width: 100%;
+                text-align: center;
+            }
+            .option{
+                size: 30px;
+                padding: 20px;
+            }
+            .bb{
+                padding: 50px;
+                border-style: none;
+                background-color: white;
+
+            }
+            .bb:hover{
+                background-color: darkgray;
+            }
+            .rb{
+                padding: 50px;
+                border-style: none;
+                padding: 50px;
+                background-color: white;
+
+            }
+            .rb:hover{
+                background-color: darkgray;
+            }
+            .sm_icon{
+                height: 40px;
+            }
+            .nolb{
+                white-space: nowrap;
+            }
+       
+            
+           
+           
+     
+           
+            
+            
+        </style>
+
+    </head>
+    <header>
+<p><img src="http://www.socscms.com/socs/images/crests/England/LSE/952.gif" class="logo">St johns school e-portal</p>
+    </header><br><br><br>
+    <section class="title">
+        
+<p id="welcome_text"><p id="c">Return a book</p></p></section>
+<br><br><br><br><br><br><br><br>
+<div id="form">
+<div class="center">
+    <div id="start">
+     <img src="https://img.icons8.com/android/240/000000/rfid-signal.png" class="sm_icon">
+    <input class="all_input" placeholder="scan RFID card" id="isbn">
+    
+    
+    <br><br><button class="all_input" onclick="go()"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Arrow_green_icon.svg/991px-Arrow_green_icon.svg.png" class="sm_icon"></button>
+</div>
+</div>
+<div id="conf">
+    <div class="center">
+    <h1 id="ct">please wait...</h1>
+    <button class="all_input" onclick="ret()">Yes</button> <button class="all_input" onclick="cancel()">Cancel</button>
+</div></div>
+</div><br>
+<section class="center" id="ots">
+    <div class="alert alert-success" role="alert">
+        <img src="https://img.icons8.com/color/48/000000/happy--v1.png"> Thank You for returning this book ontime. One point has been added to your account for being ontime!
+    </div>
+    <a href="ret.html" class="btn btn-primary">Start Over</a>
+</section>
+<section class="center alert alert-danger" id="oda">
+        <div class="alert alert-danger" role="alert" >
+               <img src="https://img.icons8.com/color/48/000000/sad--v1.png">
+        </div>
+        <a href="ret.html" class="btn btn-primary">Start Over</a>
+    </section>
+<script>
+    document.getElementById("oda").style.display="none"
+    document.getElementById("ots").style.display="none"
+    document.getElementById("conf").style.display="none"
+    function go(){
+        var db=firebase.firestore();
+        db.collection("user_data").doc(document.getElementById("isbn").value).get().then(function(doc){
+            console.log(doc.data().name)
+            console.log(doc.data().bbt)
+            if (doc.data().bbt==0){
+                alert("No book registered to "+doc.data().name)
+
+            }else{
+            document.getElementById("c").innerHTML="Do you want to return "+doc.data().bbt+"?"
+            document.getElementById("start").style.display="none"
+            document.getElementById("conf").style.display="block"
+            document.getElementById("ct").innerHTML="Return "+doc.data().bbt+"?"
+            window.d=doc.data().book_due_date_d
+            window.p=doc.data().points}
+
+        }).catch(function(error){
+            console.error("User identification failed: "+error);
+        })
+
+        
+    }
+    function cancel(){
+        location.reload();
+    }
+    function ret(){
+        var now=new Date()
+        var m=now.getMonth()+1;
+        var d=now.getDate();
+        var y=now.getFullYear();
+        console.log(m)
+        console.log(d)
+        console.log(y)
+/*         if (y>window.y){
+            console.log("yO");
+            var ot=false;
+            
+        }else if(m>window.m){
+            console.log("MO");
+            var ot=false;
+        }else if(d>window.d){
+            console.log("dO");
+            var ot=false;
+        }else{
+            var ot=true;
+            console.log("ontime")
+        } */
+        var e=Date.parse(now)
+        if(e>window.d){
+            var ot=false
+        }else{
+            var ot=true
+        }
+        var db=firebase.firestore()
+        window.np=window.p+1
+        window.op=window.p-1
+        if (ot==true){
+            db.collection("user_data").doc(document.getElementById("isbn").value).update({
+                bbt:0,
+                book_due_date_d:null,
+                points:window.np
+                
+            }).then(function(){
+                console.log("done! ot")
+                document.getElementById("conf").style.display="none"
+                document.getElementById("ots").style.display="block"
+            }).catch(function(error){
+                console.log(error+" OTDBW")
+
+            });
+
+        } else if(ot==false){
+            console.log("over due clear user data folder")
+            db.collection("user_data").doc(document.getElementById("isbn").value).update({
+                bbt:0,
+                book_due_date_d:null,
+                points:window.op
+                
+            }).then(function(){
+                console.log("done!od")
+                document.getElementById("conf").style.display="none"
+                document.getElementById("oda").style.display="block"
+
+                document.getElementById("oda").innerHTML=`<img src="https://img.icons8.com/color/48/000000/sad--v1.png"> Thanks for returning this book. However you were late as you were supposed to return it on `+window.d+`/`+window.m+`/`+window.y+` Because you were late you have lost a point`
+            }).catch(function(error){
+                console.log(error+" ODBW")
+            })
+
+        }
+      
+
+    }
+</script>

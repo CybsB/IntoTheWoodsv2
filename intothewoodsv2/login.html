@@ -1,0 +1,233 @@
+<!doctype html>
+<html>
+    <head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-97489288-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-97489288-5');
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/6.1.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyC5vdbYicbp_K6GfaaY2ZLKxa3LzPkhX8o",
+    authDomain: "cloud-camera-e206c.firebaseapp.com",
+    databaseURL: "https://cloud-camera-e206c.firebaseio.com",
+    projectId: "cloud-camera-e206c",
+    storageBucket: "cloud-camera-e206c.appspot.com",
+    messagingSenderId: "74972719029",
+    appId: "1:74972719029:web:0dcfaa7ac0dad670"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+ 
+<script defer src="https://www.gstatic.com/firebasejs/6.1.0/firebase-auth.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/6.1.0/firebase-firestore.js"></script>
+        <title>Cloud camera</title>
+        <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <script src="https://www.gstatic.com/firebasejs/7.0.0/firebase-performance.js"></script>
+        <script src="firebaseperf.js"></script>
+        <style>
+            body{
+                font-family: 'Raleway', sans-serif;
+                background-color: lightgrey;
+
+            }
+            header{
+             background-color: white;
+             position: absolute;
+             top: 0px;
+             left: 0px;
+             right: 0px;
+             padding: 20px;
+             
+             
+
+            }
+            .title{
+                background-color: black;
+                padding: 50px;
+                font-size: 30px;
+                position: absolute;
+                left: 0px;
+                right:0px;
+                color: white;
+                font-family: 'Raleway', sans-serif;
+            }
+            .signs{
+                text-align: center;
+            }
+            #Email{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+                
+     
+            }
+            #password{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+            }
+            #sub{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+               
+        
+            }
+            #sub:hover{
+                background-color: darkgrey;
+            }
+            .passres{
+                background-color: lightgray;
+                border-style:none;
+                
+
+            }
+            .center{
+                text-align: center;
+            }
+            #emres{
+                border-right-style: none;
+                border-left-style: none;
+                border-top-style: none;
+    
+            }
+            .popsub{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+                text-align: center
+            }
+            button{
+                text-align: center;
+            }
+            #suba{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+               
+        
+            }
+            #suba:hover{
+                background-color: darkgrey;
+            }
+            .logo{
+                height:70px;
+            }
+            .attr{
+                position: absolute;
+                bottom: 0px;
+            }
+            .logo{
+                height: 70px;
+             
+            }
+            .c{
+                font-size: 10;
+            }
+         
+     
+           
+            
+            
+        </style>
+
+    </head>
+    <header>
+        <img src="http://www.socscms.com/socs/images/crests/England/LSE/952.gif" class="logo">
+    </header><br><br><br><br><br>
+    <section class="title">
+        
+<h2><i class="material-icons md-24">account_circle</i>St-John's School Student E-portal: Login</h2>
+    </section><br><br><br><br><br><br><br><br><br>
+    <section class="signs">
+        <i class="material-icons">email</i><input type="text" id="Email"><br><br><i class="material-icons">security</i><input type="password" id="password"><br><br><button onclick="login()" id="sub"><i class="material-icons">
+arrow_forward
+</i></button>
+       <br><button class="passres" onclick="reset()">I've forgotten my password</button> 
+    </section>
+    <div id="id01" class="w3-modal w3-center">
+        <div class="w3-modal-content">
+          <div class="w3-container">
+            <span onclick="document.getElementById('id01').style.display='none'" 
+            class="w3-button w3-display-topright">&times;</span>
+            <br><div class="center">
+                <i class="material-icons">security</i>
+            </div>
+            <h2 class="center">Reset Your password</h2><div class="center">
+            <i class="material-icons">email</i><input type="text" id="emres"></div><br><button id="suba" onclick="res()"><i class="material-icons">arrow_forward</i></button>
+          </div>
+        </div>
+      </div>
+ <div class="attr">Servers , Database and software development by into the woods software &copy 2019 ITW software all rights reserverd.</div>
+</html>
+<script>
+    function login(){
+        console.log("Logging in")
+        var email=document.getElementById("Email").value
+        var password=document.getElementById("password").value
+        firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+             var errorMessage = error.message;
+  // ...
+});
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    // User is signed in.
+    var displayName = user.displayName;
+    var email = user.email;
+    var emailVerified = user.emailVerified;
+    var photoURL = user.photoURL;
+    var isAnonymous = user.isAnonymous;
+    var uid = user.uid;
+    var providerData = user.providerData;
+    // ...
+    console.log(user.uid)
+    window.location.href = "./dashboard.html";
+
+
+
+  } else {
+    // User is signed out.
+    // ...
+  }
+});
+    }
+    function reset(){
+        document.getElementById('id01').style.display='block'
+     
+
+    }
+    function res(){
+        var auth = firebase.auth();
+var emailAddress = document.getElementById("emres").value;
+console.log(emailAddress)
+auth.sendPasswordResetEmail(emailAddress).then(function() {
+  console.log("Check your emails there should be one that tells you how to reset your password")
+  document.getElementById('id01').style.display='none'
+  alert("Check your emails there should be one that tells you how to reset your password")
+
+}).catch(function(error) {
+    document.getElementById('id01').style.display='none'
+    alert("Failed this could be because we couldn't connect to our login service or this email is wrong")
+
+});
+    }
+
+
+</script>

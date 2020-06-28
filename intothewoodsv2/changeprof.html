@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+    <head>
+            <script defer src="https://www.gstatic.com/firebasejs/6.1.0/firebase-app.js"></script>
+
+            <script defer src="https://www.gstatic.com/firebasejs/6.1.0/firebase-auth.js"></script>
+            <script defer src="https://www.gstatic.com/firebasejs/6.1.0/firebase-firestore.js"></script>
+            <script defer src="https://www.gstatic.com/firebasejs/6.1.0/firebase-storage.js"></script>
+            <script defer src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+            <script defer src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+<script defer src="./firebase.js"></script>
+
+        <title>Cloud camera</title>
+        <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <style>
+            body{
+                font-family: 'Raleway', sans-serif;
+                background-color: lightgrey;
+
+            }
+            header{
+             background-color: white;
+             position: absolute;
+             top: 0px;
+             left: 0px;
+             right: 0px;
+             padding: 15px;
+             
+             
+
+            }
+            .title{
+                background-color: black;
+                padding: 50px;
+                font-size: 30px;
+                position: absolute;
+                left: 0px;
+                right:0px;
+                color: white;
+            }
+            .signs{
+                text-align: center;
+            }
+            #Email{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+                
+     
+            }
+            #password{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+            }
+            #sub{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+               
+        
+            }
+            #sub:hover{
+                background-color: darkgrey;
+            }
+            .passres{
+                background-color: lightgray;
+                border-style:none;
+                
+
+            }
+            .center{
+                text-align: center;
+            }
+            #emres{
+                border-right-style: none;
+                border-left-style: none;
+                border-top-style: none;
+    
+            }
+            .popsub{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+                text-align: center
+            }
+            button{
+                text-align: center;
+            }
+            #suba{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+               
+        
+            }
+            #suba:hover{
+                background-color: darkgrey;
+            }
+           
+     
+           
+            
+            
+        </style>
+
+    </head>
+    <header>
+<i class="material-icons">
+cloud camera_alt
+</i>
+    </header><br><br>
+    <section class="title">
+        
+<i class="material-icons md-24">account_circle</i>Cloud Camera: Change Your Profile picture
+</section>
+<br><br><br><br><br><br><br><br><br><h1 class="center">use the input below to upload a new image</h1>
+<div class="center">
+<input type="file" id="file"><br><button onclick="upload()" id="sub">Upload</button></div>
+</html>
+<script>
+
+ window.addEventListener('DOMContentLoaded', (event) => {
+     console.log("Loading firebase")
+     window.db = firebase.firestore();
+
+     window.storage = firebase.storage();
+   // var storageRef = storage.ref('/profile_pictures');
+
+    console.log("yay")
+
+});
+
+
+function upload(event){
+         //var storageRef = window.storage.ref('/profile_pictures/');
+         var files=document.getElementById("file").files[0];
+         console.log(files)
+         var storageRef = firebase.storage().ref();
+         var name='profile_pictures/'+Math.floor(Math.random() * 909000000900900000900800000990)+document.getElementById("file").files[0].name;
+
+         
+         var mountainImagesRef = storageRef.child(name);
+         if (document.getElementById("file").files[0].size<5242880){
+          // use the Blob or File API
+            mountainImagesRef.put(files).then(function(snapshot) {
+            console.log('Uploaded a blob or file!');
+
+            mountainImagesRef.getDownloadURL().then(function(url)     {
+         
+        
+            console.log(url)
+            firebase.auth().onAuthStateChanged(function(user){
+                if(user){
+                    window.db.collection("user_data").doc(user.uid).update({
+                        profile_picture:url
+
+                    }).then(function(){
+                        swal("Done","uploaded new file","success")
+
+                    });
+
+                } else{
+                    console.log("not signed in")
+                }
+
+            });
+
+
+            }).catch(function(error) {
+            // Handle any errors
+            console.log(error)
+        });
+
+
+
+            });
+            } else{
+                swal("Error","file cannot be larger than 5 MB","error")
+            }
+
+
+
+
+   
+}
+
+</script>

@@ -1,0 +1,298 @@
+<!doctype html>
+<html>
+    
+    <head>
+        
+            <script id="notif"></script>
+            <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+
+            <script defer src="https://code.jquery.com/jquery-3.4.1.js"></script>
+            <script defer src="https://www.gstatic.com/firebasejs/6.1.0/firebase-app.js"></script>
+            <script id="ola"></script>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+            <script defer src="https://www.gstatic.com/firebasejs/6.1.0/firebase-auth.js"></script>
+            <script defer src="https://www.gstatic.com/firebasejs/6.1.0/firebase-firestore.js"></script>
+            <script defer src="https://www.gstatic.com/firebasejs/6.1.0/firebase-storage.js"></script>
+            <script defer src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+            <script defer src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+         
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+<script defer src="/intothewoodsv2/firebase.js"></script>
+
+        <title>Cloud camera</title>
+        <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <style>
+            body{
+                font-family: 'Raleway', sans-serif;
+                background-color: lightgrey;
+
+            }
+            header{
+             background-color: white;
+             position: absolute;
+             top: 0px;
+             left: 0px;
+             right: 0px;
+             padding: 15px;
+             
+             
+
+            }
+            .title{
+                background-color: black;
+                padding: 50px;
+                font-size: 30px;
+                position: absolute;
+                left: 0px;
+                right:0px;
+                color: white;
+                overflow: scroll;
+            }
+            .signs{
+                text-align: center;
+            }
+            #Email{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+                
+     
+            }
+            #password{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+            }
+            .all_input{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+                text-decoration: none;
+
+                
+            }
+            .ti{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+            }
+            .sub{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+               
+        
+            }
+            .sub:hover{
+                background-color: darkgrey;
+            }
+            .passres{
+                background-color: lightgray;
+                border-style:none;
+                
+
+            }
+            .center{
+                text-align: center;
+            }
+            #emres{
+                border-right-style: none;
+                border-left-style: none;
+                border-top-style: none;
+    
+            }
+            .popsub{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+                text-align: center
+            }
+            button{
+                text-align: center;
+            }
+            #suba{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+               
+        
+            }
+            #suba:hover{
+                background-color: darkgrey;
+            }
+            .profile{
+                height: 100px;
+                position: absolute;
+                top: 350px;
+                bottom: 350px;
+
+                
+            }
+            .usr{
+                border-style:none;
+                border-radius: 10px;
+                height:350px;
+                width:290px;
+    
+                background-color:black;
+                color: white;
+                overflow: hidden;
+
+                
+
+
+
+            }
+            .ac{
+                height:50px;
+                display:block;
+                margin: auto;
+            }
+            .bed{
+                padding: 5px;
+                font-size: 20px;
+            }
+            h4{
+                font-family: 'Raleway', sans-serif;
+            }
+            .logo{
+                height: 30px;
+             
+            }
+            .usr1{
+    
+                border-style:none;
+                border-radius: 10px;
+                height:350px;
+                width:290px;
+    
+                background-color:black;
+                
+                color: white;
+                padding: 0px;
+                list-style:none;
+                overflow: hidden;
+
+
+
+             
+
+            }
+            .usr2{
+                border-style:none;
+                border-radius: 10px;
+                height:350px;
+                width:290px;
+    
+                background-color:black;
+                color: white;
+                margin-left: 10px;
+                overflow: hidden;
+
+                
+
+            }
+            .logos{
+                position: absolute;
+                bottom: 0px;
+                filter: grayscale(100%);
+            }
+            .fblog{
+                height: 50px;
+                position: absolute;
+                bottom: 4px;
+                left: 15%;
+            }
+            .options{
+                width: 100%;
+                text-align: center;
+            }
+            .option{
+                size: 30px;
+                padding: 20px;
+            }
+            .bb{
+                padding: 50px;
+                border-style: none;
+                background-color: white;
+
+            }
+            .bb:hover{
+                background-color: darkgray;
+            }
+            .rb{
+                padding: 50px;
+                border-style: none;
+                padding: 50px;
+                background-color: white;
+
+            }
+            .rb:hover{
+                background-color: darkgray;
+            }
+            .sm_icon{
+                height: 40px;
+            }
+       
+            
+           
+           
+     
+           
+            
+            
+        </style>
+
+    </head>
+    <header>
+<p><img src="http://www.socscms.com/socs/images/crests/England/LSE/952.gif" class="logo">St johns school e-portal</p>
+    </header><br><br><br>
+    <section class="title">
+        
+<p id="welcome_text"><p id="c">Add an unrecognised book</p></p></section>
+<br><br><br><br><br><br><br><br><br>
+<div class="center" id="t"><input id="bar" placeholder="Barcode" class="all_input"><br><br><input id="title" placeholder="title" class="all_input"><br><br><button onclick="add()" class="all_input">Add new book</button></div>
+<div class="center" id="suc">
+    <img src="https://www.freeiconspng.com/uploads/success-icon-10.png" class="sm_icon"><br><h3>Added book!</h3><br><button class="all_input"><a href="bb.html">Back to borrow book</a></button>
+</div>
+<div id="f" class="center">
+    <img src="https://www.freeiconspng.com/uploads/error-icon-4.png" class="sm_icon"><br><h3>Error in adding book</h3><br><button class="all_input"><a href="bb.html">Back to borrow book</a></button>
+
+</div>
+<script>
+document.getElementById("suc").style.display="none"
+document.getElementById("f").style.display="none"
+function add(){
+    var db=firebase.firestore();
+    db.collection("books").doc(document.getElementById("bar").value).set({
+        title:document.getElementById("title").value,
+        isbn:document.getElementById("bar").value
+        
+
+    }).then(function(){
+        console.log("done")
+        document.getElementById("t").style.display="none"
+        document.getElementById("suc").style.display="block"
+        
+        
+
+
+        
+    }).catch(function(error){
+        console.error(error)
+        document.getElementById("t").style.display="none"
+        document.getElementById("f").style.display="block"
+
+    })
+}
+</script>

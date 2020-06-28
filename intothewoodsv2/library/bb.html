@@ -1,0 +1,513 @@
+<!doctype html>
+<html>
+    
+    <head>
+        
+            <script id="notif"></script>
+            <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+
+            <script defer src="https://code.jquery.com/jquery-3.4.1.js"></script>
+            <script defer src="https://www.gstatic.com/firebasejs/6.1.0/firebase-app.js"></script>
+            <script id="ola"></script>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+            <script defer src="https://www.gstatic.com/firebasejs/6.1.0/firebase-auth.js"></script>
+            <script defer src="https://www.gstatic.com/firebasejs/6.1.0/firebase-firestore.js"></script>
+            <script defer src="https://www.gstatic.com/firebasejs/6.1.0/firebase-storage.js"></script>
+            <script defer src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+            <script defer src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+         
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+<script defer src="/intothewoodsv2/firebase.js"></script>
+
+        <title>Cloud camera</title>
+        <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <style>
+            body{
+                font-family: 'Raleway', sans-serif;
+                background-color: lightgrey;
+
+            }
+            header{
+             background-color: white;
+             position: absolute;
+             top: 0px;
+             left: 0px;
+             right: 0px;
+             padding: 15px;
+             
+             
+
+            }
+            .title{
+                background-color: black;
+                padding: 50px;
+                font-size: 30px;
+                position: absolute;
+                left: 0px;
+                right:0px;
+                color: white;
+                overflow: scroll;
+            }
+            .signs{
+                text-align: center;
+            }
+            #Email{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+                
+     
+            }
+            #password{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+            }
+            .all_input{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+                text-decoration: none;
+
+                
+            }
+            .ti{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+            }
+            .sub{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+               
+        
+            }
+            .sub:hover{
+                background-color: darkgrey;
+            }
+            .passres{
+                background-color: lightgray;
+                border-style:none;
+                
+
+            }
+            .center{
+                text-align: center;
+            }
+            #emres{
+                border-right-style: none;
+                border-left-style: none;
+                border-top-style: none;
+    
+            }
+            .popsub{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+                text-align: center
+            }
+            button{
+                text-align: center;
+            }
+            #suba{
+                padding: 10px;
+                border-style: none;
+                background-color: white;
+               
+        
+            }
+            #suba:hover{
+                background-color: darkgrey;
+            }
+            .profile{
+                height: 100px;
+                position: absolute;
+                top: 350px;
+                bottom: 350px;
+
+                
+            }
+            .usr{
+                border-style:none;
+                border-radius: 10px;
+                height:350px;
+                width:290px;
+    
+                background-color:black;
+                color: white;
+                overflow: hidden;
+
+                
+
+
+
+            }
+            .ac{
+                height:50px;
+                display:block;
+                margin: auto;
+            }
+            .bed{
+                padding: 5px;
+                font-size: 20px;
+            }
+            h4{
+                font-family: 'Raleway', sans-serif;
+            }
+            .logo{
+                height: 30px;
+             
+            }
+            .usr1{
+    
+                border-style:none;
+                border-radius: 10px;
+                height:350px;
+                width:290px;
+    
+                background-color:black;
+                
+                color: white;
+                padding: 0px;
+                list-style:none;
+                overflow: hidden;
+
+
+
+             
+
+            }
+            .usr2{
+                border-style:none;
+                border-radius: 10px;
+                height:350px;
+                width:290px;
+    
+                background-color:black;
+                color: white;
+                margin-left: 10px;
+                overflow: hidden;
+
+                
+
+            }
+            .logos{
+                position: absolute;
+                bottom: 0px;
+                filter: grayscale(100%);
+            }
+            .fblog{
+                height: 50px;
+                position: absolute;
+                bottom: 4px;
+                left: 15%;
+            }
+            .options{
+                width: 100%;
+                text-align: center;
+            }
+            .option{
+                size: 30px;
+                padding: 20px;
+            }
+            .bb{
+                padding: 50px;
+                border-style: none;
+                background-color: white;
+
+            }
+            .bb:hover{
+                background-color: darkgray;
+            }
+            .rb{
+                padding: 50px;
+                border-style: none;
+                padding: 50px;
+                background-color: white;
+
+            }
+            .rb:hover{
+                background-color: darkgray;
+            }
+            .sm_icon{
+                height: 40px;
+            }
+       
+            
+           
+           
+     
+           
+            
+            
+        </style>
+
+    </head>
+    <header>
+<p><img src="http://www.socscms.com/socs/images/crests/England/LSE/952.gif" class="logo">St johns school e-portal</p>
+    </header><br><br><br>
+    <section class="title">
+        
+<p id="welcome_text"><p id="c">Borrow a book</p></p></section>
+<br><br><br><br><br><br><br><br>
+<div id="form">
+<div class="center">
+     <img src="https://cdn4.iconfinder.com/data/icons/add-1/60/barcode-512.png" class="sm_icon">
+    <input class="all_input" placeholder="Scan Book's barcode" id="isbn">
+    
+    
+    <br><br><button class="all_input" onclick="go()"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Arrow_green_icon.svg/991px-Arrow_green_icon.svg.png" class="sm_icon"></button>
+
+</div></div>
+<div class="center">
+<div id="book_data">
+    <h1 id="name"></h1>
+    <p id="author"></p>
+    <p id="description"></p>
+    <img id="bimg">
+    <p id="desc"></p>
+    <p id="pages_no"></p>
+    <button class="all_input" onclick="bor()">Confirm</button>
+</div>
+<div id="rfid_get">
+    <h1>To continue enter or scan RFID card on the card reader</h1>
+    <input type="text" id="rfid" class="all_input">
+    <br><br><button class="all_input" onclick="rb()">finalize</button>
+
+</div>
+<div id="error">
+    <br>
+    <div class="alert alert-danger" role="alert" id="err">
+        Unknown error
+      </div>
+      <a href="bb.html" class="all_input">Start over</a>
+
+</div>
+<div id="load">
+    <img src="https://sabaothcare.com/media/images/ajax-loader.gif">
+</div>
+<div id="suc"><h1>
+    <div class="alert alert-success" role="alert">
+        <b>Success </b>This book has been borrowed<div id="return_date"></div>
+      </div></h1>
+      
+</div>
+</div>
+<script>
+    function calc_ret_date(){
+        var db=firebase.firestore()
+        var now=new Date()
+        now.setDate(now.getDate()+14)
+        now=new Date(now)
+        var m=now.getMonth()+1
+        var h_read=now.getDate()+"/"+m+"/"+now.getFullYear()
+        console.log(h_read)
+        console.log(now)
+        window.h_read=h_read
+        document.getElementById("return_date").innerHTML="Return by "+h_read
+        var ref=db.collection("user_data").doc(document.getElementById("rfid").value)
+        ref.get().then(function(doc){
+            if (doc.exists){
+            console.log(doc.data.email)
+            console.log(doc.data)
+            window.email=doc.data().email
+            console.log(window.email)
+            document.getElementById("notif").setAttribute("src","http://unreached.com:8080/lib_b_email?to="+window.email+"&name="+window.title+"&date="+window.h_read)
+            console.log("over to cherypy")
+            db.collection("user_data").doc(window.rfid).update({
+                book_due_date_d:Date.parse(now),
+                bbt:window.title
+
+            }).then(function() {
+                console.log("wrote return date to db")
+
+
+            }).catch(function(error){
+                console.error("failed writing date: "+Error)
+            })
+            } else{
+                console.log("email notification failed due to there being no userdata on this user")
+            }
+
+        }).catch(function(error){
+            console.log("user notification failed because: "+error)
+
+        })
+
+        
+
+    }
+    document.getElementById("error").style.display="none"
+    document.getElementById("load").style.display="none"
+    document.getElementById("rfid_get").style.display="none"
+    document.getElementById("book_data").style.display="none"
+    document.getElementById("suc").style.display="none"
+    function set(title,author,desc,picture,pages){
+        console.log(title)
+        window.title=title
+        console.log(author)
+        window.author=author
+        console.log(desc)
+        window.desc=desc
+        console.log(picture)
+        window.picture=picture
+        document.getElementById("load").style.display="none"
+        document.getElementById("form").style.display="none"
+        document.getElementById("c").innerHTML="Do you want to borrow: "+title
+        document.getElementById("book_data").style.display="block"
+        document.getElementById("name").innerHTML=title
+        document.getElementById("author").innerHTML=author
+        document.getElementById("description")
+        document.getElementById("bimg").setAttribute("src", picture)
+        document.getElementById("desc").innerHTML=desc
+        console.log(pages)
+        document.getElementById("pages_no").innerHTML="This book contains <b>"+pages+"</b> pages"
+        
+
+    }
+
+    var url_string=window.location.href
+    var url = new URL(url_string);
+    var c = url.searchParams.get("s");
+    console.log(c);
+    if(s=="t"){
+        swal("Book borrowed successfully","your book has been borrowed and added to the database","success")
+    }
+    function go(){
+        document.getElementById("ola").setAttribute("src", "http://unreached.com:8080/new_book?isbn="+document.getElementById("isbn").value)
+        console.log("start delay")
+        document.getElementById("load").style.display="block"
+        document.getElementById("form").style.display="none"
+
+        setTimeout(() => {
+        console.log("finishing delay")
+        if(window.title==undefined){
+            console.log("unrecognised book search DB")
+            var db=firebase.firestore();
+            db.collection("books").doc(document.getElementById("isbn").value).get().then(function(doc){
+                if (doc.exists){
+                    document.getElementById("load").style.display="none"
+
+                    console.log("found in db")
+                    document.getElementById("form").style.display="none"
+                    document.getElementById("book_data").style.display="block"
+                    document.getElementById("name").innerHTML=doc.data().title
+                    window.title=doc.data().title
+
+                }else{
+                    alert("This book is not recognised when you press ok you will be sent to a page to add this book")
+                    window.location.href="ab.html";
+                }
+
+            });
+
+        }else{
+            console.log("recognised book do nothing")
+            }
+
+        
+    }, 3000);
+    
+    //console.log(_OLBookInfo)
+
+}
+function bor(){
+    document.getElementById("rfid_get").style.display="block"
+    document.getElementById("book_data").style.display="none"
+    const input = document.getElementById('rfid');
+    input.focus();
+    
+}
+function rb(){
+    window.isbn=document.getElementById("isbn").value
+    window.rfid=document.getElementById("rfid").value
+    var db=firebase.firestore();
+    db.collection("user_data").doc(window.rfid).get().then(function(doc){
+        var bob=doc.data().bbt;
+
+    if(bob==0){
+    document.getElementById("load").style.display="block"
+    document.getElementById("rfid_get").style.display="none"
+    var db=firebase.firestore();
+    var book_ref=db.collection("books").doc(document.getElementById("isbn").value)
+    book_ref.get().then(function(doc){
+        if (doc.exists){
+            console.log("book in database")
+            personref=db.collection("user_data").doc(window.rfid)
+            personref.update({
+                current_book:window.isbn
+            }).then(function(){
+                document.getElementById("suc").style.display="block"
+                document.getElementById("load").style.display="none"
+                calc_ret_date()
+            }).catch(function(error){
+                document.getElementById("load").style.display="none"
+                document.getElementById("error").style.display="block"
+                document.getElementById("err").innerHTML="<b>Error!</b> "+error
+            })
+        }else{
+            console.log("book not in DB: Adding")
+            var docref=db.collection("user_data").doc(window.rfid)
+            docref.update({
+                current_book:window.isbn
+
+            }).then(function() {
+                 console.log("added user data field!");
+                 var addref=db.collection("books").doc(document.getElementById("isbn").value)
+                 addref.set({
+                     isbn:document.getElementById("isbn").value,
+                     title:window.title,
+                     author:window.author,
+                     desc:window.desc,
+                     picture:window.picture
+
+
+
+                 }).then(function(){
+                     console.log("This book has been borrowed and registered")
+                     document.getElementById("suc").style.display="block"
+                     document.getElementById("load").style.display="none"
+                     calc_ret_date()
+                 }).catch(function(error){
+                     console.error("final part of new book borrow add new book: "+error);
+                 })
+                }).catch(function(error){
+                    console.error(error)
+                    document.getElementById("error").style.display="block"
+                    document.getElementById("load").style.display="none"
+                    document.getElementById("err").innerHTML="<b>Error!</b> "+error
+
+                })
+
+
+            
+            
+          
+        }
+
+        
+    }
+
+    )
+}else{
+    alert("PERMISSION DENIED: This user is already borrowing a book")
+    
+}
+}).catch(function(error){
+        bob="uifbrhujdjekrx"
+        alert("FIREBASE ERROR: "+error)
+    })
+    
+}
+</script>
